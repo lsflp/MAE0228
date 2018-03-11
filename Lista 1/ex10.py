@@ -1,14 +1,18 @@
 import random
 from collections import Counter
 
+# Gera uma lista com numeros entre 1 e n, dispostos de forma aleatoria.
+# A lista possui tamanho n.
 def geraListaAleatoria(n):
-    lista = random.sample(range(0, n), n)
+    lista = random.sample(range(1, n+1), n)
     return lista
 
+# Conta quando o numero i esta na i-esima posicao do vetor, considerando
+# que o vetor comeca a ser indexado por 1.
 def contaPareamentos(lista):
     contador = 0
     for i in range(0, len(lista)):
-        if i == lista[i]:
+        if i == lista[i]-1:
             contador += 1
     return contador
 
