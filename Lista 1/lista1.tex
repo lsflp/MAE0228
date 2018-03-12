@@ -1,0 +1,111 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage[table]{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\newlength{\tabcont}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\begin{document}
+	
+	\textbf{Nome}: Luís Felipe de Melo Costa Silva \\
+	\textbf{Número USP}: 9297961 
+    
+	\begin{center}
+		\LARGE \bf
+		Lista de Exercícios 1 - MAE0228
+	\end{center}
+	
+	\section*{Exercício 3}
+	
+	\textbf{a)} Neste caso, cada chave possui a mesma probabilidade $P$ de abrir a porta. Como os testes ocorrem sucessivamente, ou seja, sem reposição, a distribuição aqui é a \textit{Uniforme Discreta}. Logo, $P(X=k) = \frac{1}{n}$, que é a probabilidade de a porta ser aberta na $k$-ésima tentativa, onde $X$ é a nossa variável aleatória ($X = 1, 2, ..., n$). 
+	
+	\textbf{b)} Aqui, a probabilidade de cada chave abrir é a mesma. O que mudou foi o experimento. Agora, com a amostragem sem reposição, são feitas várias tentativas até o primeiro sucesso. Então, abrir a porta na $k$-ésima tentativa significa que ocorreram $k-1$ falhas e então, o sucesso. A distribuição aqui é a \textit{Geométrica}. Portanto, $P(X=k) = (1-p)^{k-1}p$, onde $p = \frac{1}{n}$ é a probabilidade de uma chave abrir a porta e $k = 1, 2, ...$ é o número de tentativas.
+	
+	\section*{Exercício 4}
+	
+	Queremos saber se, num grupo com $4$ macacos capturados entre $20$, temos $2$ macacos marcados (e outros $2$ não marcados). Do grupo de $20$, $5$ foram marcados e $15$ não. Assim:
+	
+	\begin{itemize}
+		\item Espaço amostral (4 macacos marcados entre 20): $C_{20,4}$
+		\item 2 macacos marcados entre 5: $C_{5,2}$
+		\item 2 macacos não marcados entre 15: $C_{15,2}$
+	\end{itemize}
+	
+	Portanto, $P$(2 marcados \textit{e} 2 não marcados) $= \frac{C_{5,2} \cdot C_{15,2}}{C_{20,4}} \cong 0.2167$
+	
+	A suposição feita foi que as seleções de um macaco foram independentes e identicamente distribuídas. 
+	
+	\section*{Exercício 7}
+	
+	\textbf{a)} Os dois casos são análogos. Sabemos que:
+	
+	\begin{itemize}
+		\item $P(B^c\text{ }|\text{ }A)$ é a probabilidade de o dígito $0$ ser recebido dado que o dígito $1$ foi enviado;
+		\item $P(B\text{ }|\text{ }A^c)$ é a probabilidade de o dígito $1$ ser recebido dado que o dígito $0$ foi enviado.
+	\end{itemize}
+	
+	Essas probabilidades indicam a probabilidade de haver uma falha na comunicação, devido ao ruído, no lado da recepção.
+	
+	\textbf{b)} Para calcularmos essas probabilidades, vamos antes calcular algumas outras para auxiliar nossos cálculos. Sabendo que $P(A) = P(A \cap B) + P(A \cap B^c)$:
+	
+	\begin{itemize}
+		\item $P(B^c \cap A) = P(B^c\text{ }|\text{ }A) \cdot P(A) = 0.01 \cdot 0.5 = 0.005$
+		\item $P(B \cap A^c) = P(B\text{ }|\text{ }A^c) \cdot P(A^c) = P(B\text{ }|\text{ }A^c) \cdot [1-P(A)] = 0.01 \cdot 0.5 = 0.005$
+		\item $P(B) = P(A^c \cap B) + P(A \cap B) = P(A^c \cap B) + [P(A) - P(B^c \cap A)] = 0.005 + 0.5 - 0.005 = 0.5$
+	\end{itemize}
+	
+	Portanto, vamos calcular:
+	
+	\begin{itemize}
+		\item $P(A\text{ }|\text{ }B) = \frac{P(A \cap B)}{P(B)} = \frac{P(B) - P(A^c \cap B)}{P(B)} = \frac{0.5 -0.005}{0.5} = 0.99$
+		\item $P(A^c\text{ }|\text{ }B) = \frac{P(A^c \cap B)}{P(B)} = \frac{0.005}{0.5} = 0.01$
+		\item $P(A\text{ }|\text{ }B^c) = \frac{P(A \cap B^c)}{P(B^c)} = \frac{P(A \cap B^c)}{1 - P(B)} = \frac{0.005}{0.5} = 0.01$
+		\item $P(A^c\text{ }|\text{ }B^c) = \frac{P(A^c \cap B^c)}{P(B^c)} = \frac{P(A^c \cap B^c)}{1 - P(B)} = \frac{P(B^c) - P(A \cap B^c)}{1 - P(B)} = \frac{1 - P(B) - P(A \cap B^c)}{1 - P(B)} = \frac{0.5 - 0.005}{0.5} = 0.99$
+	\end{itemize}
+	
+	\section*{Exercício 10}
+	
+	\textbf{a)} Teremos as seguintes tabelas:
+		
+	\begin{multicols}{2}
+		Para $N = 5$:\\\\
+		\begin{tabular}{|l|c|}
+			\cline{1-2}
+			X & pareamentos  \\ \cline{1-2}
+			0 & 34 \\ 
+			1 & 35 \\ 
+			2 & 24 \\ 
+			3 & 7  \\ \cline{1-2}
+		\end{tabular}
+		
+		Para $N = 20$:\\\\
+		\begin{tabular}{|l|c|}
+			\cline{1-2}
+			X & pareamentos  \\ \cline{1-2}
+			0 & 33 \\ 
+			1 & 41 \\ 
+			2 & 18 \\
+			3 & 4  \\
+			4 & 4  \\ \cline{1-2}
+		\end{tabular}
+	\end{multicols}
+		
+	Para demais valores de $X$ não expressos, não houve pareamentos.
+	
+	
+	
+	
+	
+	\textbf{b)}
+	\textbf{c)}
+	
+	
+			 
+\end{document}
