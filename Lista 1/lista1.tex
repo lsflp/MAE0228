@@ -3,7 +3,6 @@
 \usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
 \usepackage[table]{xcolor}
 \usepackage[margin=2.5cm]{geometry}
-\usepackage{ragged2e}
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage{mathtools}
@@ -16,7 +15,7 @@
 	
 	\textbf{Nome}: Luís Felipe de Melo Costa Silva \\
 	\textbf{Número USP}: 9297961 
-    
+	
 	\begin{center}
 		\LARGE \bf
 		Lista de Exercícios 1 - MAE0228
@@ -30,17 +29,30 @@
 	
 	\section*{Exercício 4}
 	
-	Queremos saber se, num grupo com $4$ macacos capturados entre $20$, temos $2$ macacos marcados (e outros $2$ não marcados). Do grupo de $20$, $5$ foram marcados e $15$ não. Assim:
+	Deseja-se saber se, num grupo com $4$ macacos capturados entre $20$, existem $2$ macacos marcados (e outros $2$ não marcados). Do grupo de $20$, $5$ foram marcados e $15$ não. Assim:
 	
 	\begin{itemize}
-		\item Espaço amostral (4 macacos marcados entre 20): $C_{20,4}$
-		\item 2 macacos marcados entre 5: $C_{5,2}$
-		\item 2 macacos não marcados entre 15: $C_{15,2}$
+		\item Espaço amostral (4 macacos marcados entre 20): $\binom{20}{4}$
+		\item 2 macacos marcados entre 5: $\binom{5}{2}$
+		\item 2 macacos não marcados entre 15: $\binom{15}{2}$
 	\end{itemize}
 	
-	Portanto, $P$(2 marcados \textit{e} 2 não marcados) $= \frac{C_{5,2} \cdot C_{15,2}}{C_{20,4}} \cong 0.2167$
+	Portanto, $P$(X=2) $= \frac{\binom{5}{2} \cdot \binom{15}{2}}{\binom{20}{4}} \cong 0.2167$
 	
-	A suposição feita foi que as seleções de um macaco foram independentes e identicamente distribuídas. 
+	Como pode-se ver, foi suposto que a população de macacos pode ser descrita por uma variável aleatória que segue o modelo Hipergeométrico descrito abaixo:
+	
+	\begin{center}
+		$P(X=k)=\frac{\binom{r}{k} \cdot \binom{N-r}{n-k}}{\binom{N}{n}}$, com:
+	\end{center}
+	
+	\begin{multicols}{4}
+		\begin{itemize}
+			\item $k = 2$;
+			\item $r = 5$;
+			\item $N = 20$;
+			\item $n = 4$.
+		\end{itemize}
+	\end{multicols}
 	
 	\section*{Exercício 7}
 	
@@ -53,7 +65,7 @@
 	
 	Essas probabilidades indicam a probabilidade de haver uma falha na comunicação, devido ao ruído, no lado da recepção.
 	
-	\textbf{b)} Para calcularmos essas probabilidades, vamos antes calcular algumas outras para auxiliar nossos cálculos. Sabendo que $P(A) = P(A \cap B) + P(A \cap B^c)$:
+	\textbf{b)} Para essas probabilidades serem calculadas, é necessário calcular algumas outras para auxiliar nos cálculos. Sabendo que $P(A) = P(A \cap B) + P(A \cap B^c)$:
 	
 	\begin{itemize}
 		\item $P(B^c \cap A) = P(B^c\text{ }|\text{ }A) \cdot P(A) = 0.01 \cdot 0.5 = 0.005$
@@ -72,40 +84,51 @@
 	
 	\section*{Exercício 10}
 	
-	\textbf{a)} Teremos as seguintes tabelas:
-		
+	\textbf{a)} Depois da simulação, saíram as seguintes tabelas:
+	
 	\begin{multicols}{2}
 		Para $N = 5$:\\\\
 		\begin{tabular}{|l|c|}
 			\cline{1-2}
 			X & pareamentos  \\ \cline{1-2}
-			0 & 34 \\ 
-			1 & 35 \\ 
-			2 & 24 \\ 
-			3 & 7  \\ \cline{1-2}
+			0 & 33 \\ 
+			1 & 40 \\ 
+			2 & 19 \\ 
+			3 & 7  \\ 
+			5 & 1  \\ \cline{1-2}
 		\end{tabular}
 		
 		Para $N = 20$:\\\\
 		\begin{tabular}{|l|c|}
 			\cline{1-2}
 			X & pareamentos  \\ \cline{1-2}
-			0 & 33 \\ 
-			1 & 41 \\ 
-			2 & 18 \\
-			3 & 4  \\
-			4 & 4  \\ \cline{1-2}
+			0 & 37 \\ 
+			1 & 38 \\ 
+			2 & 15 \\
+			3 & 7  \\
+			4 & 2  \\
+			6 & 1  \\ \cline{1-2}
 		\end{tabular}
 	\end{multicols}
-		
-	Para demais valores de $X$ não expressos, não houve pareamentos.
 	
+	Para demais valores de $X$ não expressos, não houve pareamentos. \\
 	
+	\textbf{b)} Aqui, a probabilidade de pelo menos um pareamento quer dizer: um pareamento, ou dois pareamentos, e por aí vai. Portanto, será calculada $\sum_{k=1}^{N} P(X=k)$. Logo:
 	
+	\begin{itemize}
+		\item Para $N = 5$: $\sum_{k=1}^{N} P(X=k) = 0.4 + 0.19 + 0.07 + 0.01 = 0.67$
+		\item Para $N = 20$: $\sum_{k=1}^{N} P(X=k) = 0.38 + 0.15 + 0.07 + 0.02 + 0.01 = 0.63$
+	\end{itemize}
 	
+	\textbf{c)} Como nossa variável $X$ é discreta, a fórmula da esperança que será usada aqui será: 
 	
-	\textbf{b)}
-	\textbf{c)}
+	\begin{center}
+		$E(X) = \sum_{i=0}^{N} X_i \cdot P(X_i)$, logo:
+	\end{center}
 	
+	\begin{itemize}
+		\item Para $N = 5$: $\sum_{k=1}^{N} P(X=k) = 0 \cdot 0.33 + 1 \cdot 0.4 + 2 \cdot 0.19 + 3 \cdot 0.07 + 5 \cdot 0.01 = 1.04$
+		\item Para $N = 20$: $\sum_{k=1}^{N} P(X=k) = 0 \cdot 0.37 + 1 \cdot 0.38 + 2 \cdot 0.15 + 3 \cdot 0.07 + 4 \cdot 0.02 + 6 \cdot 0.01 = 0.99$
+	\end{itemize}
 	
-			 
 \end{document}
