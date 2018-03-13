@@ -1,0 +1,52 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage[table]{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{palatino}
+\usepackage[brazil]{babel}
+\newlength{\tabcont}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\begin{document}
+	
+	\textbf{Nome}: Luís Felipe de Melo Costa Silva \\
+	\textbf{Número USP}: 9297961 
+	
+	\begin{center}
+		\LARGE \bf
+		Lista de Exercícios 2 - MAE0228
+	\end{center}
+	
+	\section*{Exercício 2}
+	
+	\textbf{a)} Sabendo que $E(X) = \int_{-\infty}^{\infty} x \cdot f(x)dx$, pode-se fazer:
+	
+	\begin{equation*}
+		\begin{split}
+			E(aX+b) & = \int_{-\infty}^{\infty} (ax+b) \cdot f(x)dx \\
+			& = \int_{-\infty}^{\infty} ax \cdot f(x) + b\cdot f(x)dx \\
+			& = \int_{-\infty}^{\infty} ax \cdot f(x)dx + \int_{-\infty}^{\infty}b\cdot f(x)dx \\
+			& = a \cdot \int_{-\infty}^{\infty} x \cdot f(x)dx + b\cdot \int_{-\infty}^{\infty} f(x)dx \\
+			& = a \cdot E(X) + b
+		\end{split}
+	\end{equation*}
+	
+	\textbf{b)} Usando a propriedade $Var(X) = E(X^2) - E^2(X)$ e o resultado do item \textbf{a}:
+	
+	\begin{equation*}
+		\begin{split}
+			Var(aX+b) & = E[(aX+b)^2] - E^2(aX+b) \\
+			& = \int_{-\infty}^{\infty} (a^2x^2 + 2abx + b^2) \cdot f(x)dx - [(\int_{-\infty}^{\infty} (ax+b) \cdot f(x)dx) \cdot (\int_{-\infty}^{\infty} (ax+b) \cdot f(x)dx)] \\
+			& = \int_{-\infty}^{\infty} a^2x^2 \cdot f(x)dx+ \int_{-\infty}^{\infty} 2abx \cdot f(x)dx + \int_{-\infty}^{\infty} b^2 \cdot f(x)dx - (a \cdot E(X) + b)^2 \\
+			& = a^2 \cdot \int_{-\infty}^{\infty} x^2 \cdot f(x)dx+ 2ab \cdot \int_{-\infty}^{\infty} x \cdot f(x)dx + b^2 \cdot \int_{-\infty}^{\infty} f(x)dx - (a \cdot E(X) + b)^2 \\
+			& = a^2 \cdot E(X^2) + 2ab \cdot E(X) + b^2 - a^2 \cdot E^2(X) - 2ab \cdot E(X) - b^2\\
+			& = a^2 \cdot [E(X^2) - E^2(X)] = a^2 \cdot Var(X) 
+		\end{split}
+	\end{equation*}
+	
+\end{document}
