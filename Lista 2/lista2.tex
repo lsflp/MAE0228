@@ -53,6 +53,28 @@
 	
 	\qed
 	
+	\section*{Exercício 6}
+	
+	Pelo enunciado, é possível inferir que $X$ é uma variável aleatória que segue o modelo de distribuição \textit{Geométrico} (por definição, é o caso especial da \textit{Bernoulli} com um sucesso). Portanto, 
+	
+	\begin{center}
+		$P(X=k) = (1-p)^{k-1} \cdot p$
+	\end{center}
+	
+	Vamos calcular $E(X)$. 
+	
+	\begin{equation*}
+		\begin{split}
+			E(X) & = \sum_{k=0}^{\infty} k \cdot P(X=k) = \sum_{k=0}^{\infty} P(X>k) = \sum_{k=1}^{\infty} P(x \geq k)\\ 
+			& = \sum_{k=1}^{\infty} P(X=k) + \sum_{k=2}^{\infty} P(X=k) + \sum_{k=3}^{\infty} P(X=k) +... \\
+			& = \sum_{k=1}^{\infty} (1-p)^{k-1} \cdot p + \sum_{k=2}^{\infty} (1-p)^{k-1} \cdot p + \sum_{k=3}^{\infty} (1-p)^{k-1} \cdot p + ... \\
+			& = p \cdot [\sum_{k=1}^{\infty} (1-p)^{k-1} + \sum_{k=2}^{\infty} (1-p)^{k-1} + \sum_{k=3}^{\infty} (1-p)^{k-1} + ...]\\
+			& = p \cdot [\frac{1}{1-(1-p)} + \frac{1-p}{1-(1-p)} + \frac{(1-p)^2}{1-(1-p)} + ...]\\
+			& = p \cdot [\frac{1}{p} + \frac{1-p}{p} + \frac{(1-p)^2}{p} + ...]\\
+			& = 1 + (1-p) + (1-p)^2 + ... = \sum_{i = 0}^{\infty} (1-p)^i = \frac{1}{1-(1-p)} = \frac{1}{p}\\
+		\end{split}
+	\end{equation*}
+	
 	\section*{Exercício 8}
 	
 	$E(\frac{1}{X+1})$ será calculada usando a definição de esperança para variáveis aleatórias discretas, como é no caso da Poisson. Logo:
