@@ -53,6 +53,25 @@
 	
 	\qed
 	
+	\section*{Exercício 3}
+	
+	Do enunciado temos que $\lambda = 0.5$ defeito por quilômetro.
+	
+	\textbf{a)} Para um rolo de $3000$ m ($3$ km), esperamos que existam $1.5$ defeitos. Portanto, $\lambda = \frac{3}{2}$. A probabilidade de algum defeito é a probabilidade do número de defeitos ser maior do que zero.
+	
+	\begin{center}
+		$P(X>0) = 1 - P(X=0) = 1 - \frac{e^{-1.5}\cdot 1.5^0}{0!} \cong 1 - 0.2231 = 0.7769$
+	\end{center} 
+	
+	\textbf{b)} Analogamente ao item anterior, em um rolo de $6$ km esperamos $3$ defeitos. Portanto, $\lambda = 3$. Queremos a probabilidade de mais de um defeito:
+	
+	\begin{equation*}
+		\begin{split}
+			P(X>1) & =   1 - P(X \leq 1) = 1 - P(X=1) - P(X=0) = \\
+			& = 1 - \frac{e^{-3}\cdot 3^1}{1!} - \frac{e^{-3}\cdot 3^0}{0!} \cong 1 - 0.1493 - 0.0497 = 0.0801\\ 
+		\end{split}
+	\end{equation*}
+	
 	\section*{Exercício 6}
 	
 	Pelo enunciado, é possível inferir que $X$ é uma variável aleatória que segue o modelo de distribuição \textit{Geométrico} (por definição, é o caso especial da \textit{Bernoulli} com um sucesso). Portanto, 
