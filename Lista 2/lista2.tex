@@ -43,9 +43,9 @@
 	\begin{equation*}
 		\begin{split}
 			Var(aX+b) & = E[(aX+b)^2] - E^2(aX+b) \\
-			& = \int_{-\infty}^{\infty} (a^2x^2 + 2abx + b^2) \cdot f(x)dx - [(\int_{-\infty}^{\infty} (ax+b) \cdot f(x)dx) \cdot (\int_{-\infty}^{\infty} (ax+b) \cdot f(x)dx)] \\
-			& = \int_{-\infty}^{\infty} a^2x^2 \cdot f(x)dx+ \int_{-\infty}^{\infty} 2abx \cdot f(x)dx + \int_{-\infty}^{\infty} b^2 \cdot f(x)dx - (a \cdot E(X) + b)^2 \\
-			& = a^2 \cdot \int_{-\infty}^{\infty} x^2 \cdot f(x)dx+ 2ab \cdot \int_{-\infty}^{\infty} x \cdot f(x)dx + b^2 \cdot \int_{-\infty}^{\infty} f(x)dx - (a \cdot E(X) + b)^2 \\
+			& = \int_{-\infty}^{\infty} (a^2x^2 + 2abx + b^2) \cdot f(x)dx - [\int_{-\infty}^{\infty} (ax+b) \cdot f(x)dx]^2 \\
+			& = \int_{-\infty}^{\infty} a^2x^2 \cdot f(x)dx+ \int_{-\infty}^{\infty} 2abx \cdot f(x)dx + \int_{-\infty}^{\infty} b^2 \cdot f(x)dx - [a \cdot E(X) + b]^2 \\
+			& = a^2 \cdot \int_{-\infty}^{\infty} x^2 \cdot f(x)dx+ 2ab \cdot \int_{-\infty}^{\infty} x \cdot f(x)dx + b^2 \cdot \int_{-\infty}^{\infty} f(x)dx - [a \cdot E(X) + b]^2 \\
 			& = a^2 \cdot E(X^2) + 2ab \cdot E(X) + b^2 - a^2 \cdot E^2(X) - 2ab \cdot E(X) - b^2\\
 			& = a^2 \cdot [E(X^2) - E^2(X)] = a^2 \cdot Var(X) 
 		\end{split}
@@ -57,7 +57,7 @@
 	
 	Do enunciado temos que $\lambda = 0.5$ defeito por quilômetro.
 	
-	\textbf{a)} Para um rolo de $3000$ m ($3$ km), esperamos que existam $1.5$ defeitos. Portanto, $\lambda = \frac{3}{2}$. A probabilidade de algum defeito é a probabilidade do número de defeitos ser maior do que zero.
+	\textbf{a)} Para um rolo de $3000$ m ($3$ km), esperamos que existam $1.5$ defeitos. Portanto, $\lambda = 1.5$. A probabilidade de algum defeito é a probabilidade do número de defeitos ser maior do que zero.
 	
 	\begin{center}
 		$P(X>0) = 1 - P(X=0) = 1 - \frac{e^{-1.5}\cdot 1.5^0}{0!} \cong 1 - 0.2231 = 0.7769$
@@ -68,13 +68,13 @@
 	\begin{equation*}
 		\begin{split}
 			P(X>1) & =   1 - P(X \leq 1) = 1 - P(X=1) - P(X=0) = \\
-			& = 1 - \frac{e^{-3}\cdot 3^1}{1!} - \frac{e^{-3}\cdot 3^0}{0!} \cong 1 - 0.1493 - 0.0497 = 0.0801\\ 
+			& = 1 - \frac{e^{-3}\cdot 3^1}{1!} - \frac{e^{-3}\cdot 3^0}{0!} \cong 1 - 0.1493 - 0.0497 = 0.801\\ 
 		\end{split}
 	\end{equation*}
 	
 	\section*{Exercício 6}
 	
-	Pelo enunciado, é possível inferir que $X$ é uma variável aleatória que segue o modelo de distribuição \textit{Geométrico} (por definição, é o caso especial da \textit{Bernoulli} com um sucesso). Portanto, 
+	Pelo enunciado, é possível inferir que $X$ é uma variável aleatória que segue o modelo de distribuição \textit{Geométrico} (por definição, o caso especial da \textit{Bernoulli} com um sucesso). Portanto, 
 	
 	\begin{center}
 		$P(X=k) = (1-p)^{k-1} \cdot p$
@@ -101,10 +101,9 @@
 	\begin{equation*}
 		\begin{split}
 			E(\frac{1}{X+1}) & = \sum_{x=0}^{\infty} \frac{1}{x+1} \cdot P(X=x)\\
-			& = \sum_{x=0}^{\infty} \frac{1}{x+1} \cdot \frac{e^{-\lambda}\cdot \lambda^x}{x!} \\
-			& = \sum_{x=0}^{\infty} \frac{e^{-\lambda}\cdot \lambda^x}{(x+1)!} \\
+			& = \sum_{x=0}^{\infty} \frac{1}{x+1} \cdot \frac{e^{-\lambda}\cdot \lambda^x}{x!} = \sum_{x=0}^{\infty} \frac{e^{-\lambda}\cdot \lambda^x}{(x+1)!} \\
 			& = \sum_{x=0}^{\infty}\frac{1}{\lambda} \cdot \frac{e^{-\lambda}\cdot \lambda^{x+1}}{(x+1)!} = \frac{1}{\lambda} \cdot \sum_{x=0}^{\infty} \frac{e^{-\lambda}\cdot \lambda^{x+1}}{(x+1)!} \\
-			& = \frac{1}{\lambda} \cdot \sum_{y=1}^{\infty} \frac{e^{-\lambda}\cdot \lambda^y}{y!} \text{ , onde }\\
+			& = \frac{1}{\lambda} \cdot \sum_{y=1}^{\infty} \frac{e^{-\lambda}\cdot \lambda^y}{y!} \text{ , onde $y=x+1$}\\
 			& = \frac{1}{\lambda} \cdot [1-P(Y=0)] \text{ , onde Y$\sim$Poisson($\lambda$)} \\ 
 			& = \frac{1}{\lambda} \cdot (1 - e^{-\lambda}) = \frac{1 - e^{-\lambda}}{\lambda} 
 	\end{split}
