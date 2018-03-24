@@ -1,0 +1,40 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage[table]{xcolor}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{palatino}
+\usepackage[brazil]{babel}
+\newlength{\tabcont}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\begin{document}
+	
+	\textbf{Nome}: Luís Felipe de Melo Costa Silva \\
+	\textbf{Número USP}: 9297961 
+	
+	\begin{center}
+		\LARGE \bf
+		Lista de Exercícios 2 - MAE0228
+	\end{center}
+	
+	\section*{Exercício 6}
+	
+	\textbf{b)} Sabendo, do item anterior, que $X+Y \sim Poisson(\lambda + \mu)$ e que $X$ e $Y$ são independentes, teremos: 
+	
+	\begin{equation*}
+		\begin{split}
+			P(X|X+Y=n) & = \frac{P(X=x, X+Y=n)}{P(X+Y=n)} = \frac{P(X=x, Y=n-x)}{P(X+Y=n)} = \frac{P(X=x) \cdot P(Y=n-x)}{P(X+Y=n)} =\\
+			& = \left[\frac{e^{-\lambda} \cdot \lambda^x}{x!} \cdot \frac{e^{-\mu} \cdot \mu^{n-x}}{(n-x)!}\right] \cdot \frac{n!}{e^{-(\lambda+\mu)}\cdot(\lambda+\mu)^n} = \\
+			& = \frac{n!}{x!\cdot(n-x)!} \cdot \frac{e^{-(\lambda+\mu)}}{e^{-(\lambda+\mu)}} \cdot \frac{\lambda^x \cdot \mu^{n-x}}{(\lambda+\mu)^n} = \binom{n}{x} \frac{\lambda^x}{(\lambda+\mu)^x} \cdot \frac{\mu^{n-x}}{(\lambda+\mu)^{n-x}} = \\
+			& = \binom{n}{x} \left(\frac{\lambda}{\lambda+\mu}\right)^x \cdot \left(\frac{\mu}{\lambda+\mu}\right)^{n-x} \sim Binomial\left(n, \frac{\lambda}{\lambda+\mu}\right)\\
+		\end{split}
+	\end{equation*}
+	
+	\qed
+	
+\end{document}
