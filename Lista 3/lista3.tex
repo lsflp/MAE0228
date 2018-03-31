@@ -22,6 +22,72 @@
 		Lista de Exercícios 2 - MAE0228
 	\end{center}
 	
+	\section*{Exercício 2}
+	
+	Para esse exercício, vamos considerar:
+	
+	\begin{itemize}
+		\item $T_A$ como o tempo de atendimento de $A$.
+		\item $T_B$ como o tempo de atendimento de $B$.
+		\item $T_C$ como o tempo de atendimento de $C$.
+	\end{itemize}
+	
+	\textbf{a)} Queremos calcular $P(T_A > T_B + T_C)$. Aqui, os tempos são determinísticos, então, $T_A = T_B = T_C = 5$. Logo, $P(T_A > T_B + T_C) = P(5 > 10) = 0$. \\
+	
+	\textbf{b)} Vamos calcular a distribuição de $T_B+T_C = T_{B+C}$. O valor de $T_B$ está nas linhas, e o de $T_C$, nas colunas. Os valores do interior são os possíveis para $T_{B+C}$.
+	
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|l}
+			\cline{1-4}
+			$T_B+T_C$ & 1 & 2 & 3 &  \\ \cline{1-4}
+			1         & 2 & 3 & 4 &  \\ \cline{1-4}
+			2         & 3 & 4 & 5 &  \\ \cline{1-4}
+			3         & 4 & 5 & 6 &  \\ \cline{1-4}
+		\end{tabular}
+	\end{center}
+	
+	Logo, assumindo independência entre $T_A$, $T_B$ e $T_C$ (já que o tempo de cada caixa é regido por uma variável aleatória, e portanto, o tempo de atendimento de cada cliente será um valor):
+	
+	\begin{equation*}
+		\begin{split}
+			P(T_A > T_{B+C}) & = \sum_{T_A = 1}^{3} \sum_{T_{B+C} = 1}^{T_A-1} P(T_A) \cdot P(T_{B+C}) = \\
+			& = P(T_A = 2) \cdot P(T_{B+C} = 1) + P(T_A = 3) \cdot P(T_{B+C} = 1) + P(T_A = 3) \cdot P(T_{B+C} = 2) = \\
+			& = P(T_A = 3) \cdot P(T_{B+C} = 2) = \frac{1}{3} \cdot \frac{1}{9} = \frac{1}{27}
+		\end{split}
+	\end{equation*}
+	
+	\textbf{c)} Fazendo $T_A = W$, $T_B = X$, $T_C = Y$, $T_B+T_C=T_{B+C} = Z$, vamos achar a distribuição de Z, sabendo que $f_x(x) = \mu \cdot e^{-\mu \cdot x}$ e que $f_y(y) = \mu \cdot e^{-\mu \cdot y}$.
+	
+	\begin{equation*}
+		\begin{split}
+			F_z(z) & = \int_{0}^{z} \int_{0}^{z-y} \mu \cdot e^{-\mu \cdot x} \cdot \mu \cdot e^{-\mu \cdot y} \text{d}x \text{d}y = \int_{0}^{z}  \mu \cdot e^{-\mu \cdot y} \cdot \left[-e^{-\mu \cdot x}\right]_{0}^{z-y} \text{d}y = \\
+			& = \int_{0}^{z}  \mu \cdot e^{-\mu \cdot y} \cdot \left[1 - e^{-\mu(z-y)}\right] \text{d}y = \int_{0}^{z}  \mu \cdot e^{-\mu \cdot y} - \mu \cdot e^{-\mu \cdot z} \text{d}y = \\
+			& = \left[-e^{-\mu \cdot y} - y \cdot \mu \cdot e^{-\mu \cdot z}  \right]_{0}^{z} = -e^{-\mu \cdot z} - z \cdot \mu \cdot e^{-\mu \cdot z} - (-1 - 0 \cdot \mu \cdot e^{-\mu \cdot z}) = \\
+			& = 1 -e^{-\mu \cdot z} - z \cdot \mu \cdot e^{-\mu \cdot z} 
+		\end{split}
+	\end{equation*}
+	
+	Portanto, 
+	
+	\begin{equation*}
+		\begin{split}
+			f_z(z) = F_z'(z) = \mu \cdot e^{-\mu \cdot z} - \mu \cdot e^{-\mu \cdot z} + z \cdot \mu^2 \cdot e^{-\mu \cdot z} = z \cdot \mu^2 \cdot e^{-\mu \cdot z} = \frac{z^{2-1} \cdot \mu^2 \cdot e^{-\mu \cdot z}}{\Gamma(2)}
+		\end{split}
+	\end{equation*}
+	
+	Logo, $Z\sim$ Gama$(2,\mu)$. Agora, vamos calcular $P(W>Z)$, assumindo independência, assim como no exercício anterior, entre $W$ e $Z$: 
+	
+	\begin{equation*}
+		\begin{split}
+			P(W>Z) & = \int_{0}^{\infty} \int_{0}^{w} f_w(w) \cdot f_z(z) \text{d}z \text{d}w = \int_{0}^{\infty} \int_{0}^{w} \mu \cdot e^{-\mu \cdot w} \cdot z \cdot \mu^2 \cdot e^{-\mu \cdot z} \text{d}z \text{d}w = \\
+			& = \int_{0}^{\infty} \int_{0}^{w} \mu \cdot e^{-\mu \cdot w} \cdot f_z(z) \text{d}z \text{d}w = \int_{0}^{\infty} \mu \cdot e^{-\mu \cdot w} \cdot \int_{0}^{w} f_z(z) \text{d}z \text{d}w = \\
+			& = \int_{0}^{\infty} \mu \cdot e^{-\mu \cdot w} \cdot F_z(w) \text{d}w = \int_{0}^{\infty} \mu \cdot e^{-\mu \cdot w} \cdot [1 -e^{-\mu \cdot w} - w \cdot \mu \cdot e^{-\mu \cdot w} ] \text{d}w = \\
+			& = \int_{0}^{\infty} \mu \cdot e^{-\mu \cdot w} \text{d}w - \int_{0}^{\infty} \mu \cdot e^{-2 \cdot\mu \cdot w} \text{d}w - \int_{0}^{\infty} w \cdot \mu^2 \cdot e^{-2 \cdot \mu \cdot w} \text{d}w  = \\
+			& = \int_{0}^{\infty} \mu \cdot e^{-\mu \cdot w} \text{d}w - \frac{1}{2} \int_{0}^{\infty} 2\cdot \mu \cdot e^{-2 \cdot\mu \cdot w} \text{d}w - \frac{1}{4}\int_{0}^{\infty} \frac{w \cdot 4 \cdot \mu^2 \cdot e^{-2 \cdot \mu \cdot w}}{\Gamma(2)} \text{d}w = \\
+			& = 1 \cdot 1 - \frac{1}{2} \cdot 1 - \frac{1}{4} \cdot 1 = \frac{1}{4}
+		\end{split}
+	\end{equation*}
+	
 	\section*{Exercício 6}
 	
 	\textbf{b)} Sabendo, do item anterior, que $X+Y \sim Poisson(\lambda + \mu)$ e que $X$ e $Y$ são independentes, teremos: 
@@ -37,4 +103,30 @@
 	
 	\qed
 	
+	\section*{Exercício 8}
+	
+	Acatando a sugestão do enunciado, vamos particionar $X$ como $X = A+B+C$, onde:
+	
+	\begin{itemize}
+		\item $A$ é o número de retiradas até o primeiro cupom do primeiro tipo.
+		\item $B$ é o número de retiradas até o primeiro cupom de tipo diferente do anterior.
+		\item $C$ é o número de retiradas até o primeiro cupom de tipo diferente dos anteriores.
+	\end{itemize}
+	
+	As retiradas são feitas com reposição. Então, teremos as seguintes definições para cada uma das variáveis aleatórias acima:
+	
+	\begin{itemize}
+		\item $A \sim$ Geométrica($1$). $E(A) = \frac{1}{1} = 1$ e $Var(A) = \frac{1-1}{1^2} = 0$
+		\item $B \sim$ Geométrica$\left(\frac{9}{10}\right)$. $E(B) = \frac{1}{\frac{9}{10}} = \frac{10}{9} =1.\overline{1}$ e $Var(B) = \frac{1-\frac{9}{10}}{(\frac{9}{10})^2} \cong 0.12346$
+		\item $C \sim$ Geométrica$\left(\frac{8}{10}\right)$. $E(C) = \frac{1}{\frac{8}{10}}= \frac{10}{8} = 1.25$ e $Var(C) = \frac{1-\frac{8}{10}}{(\frac{8}{10})^2} = 0.3125$
+	\end{itemize}
+	
+	É importante notar que $A$, $B$ e $C$ são \textbf{independentes} umas das outras. Como as retiradas são feitas \textbf{com reposição}, um evento não interfere no seu sucessor. Quando fazemos as $A$ retiradas para o cupom do primeiro tipo, começaremos as $B$ retiradas para o cupom do segundo tipo, que será um novo experimento independente do anterior, com probabilidade diferente. Para o terceiro tipo de cupom, vale o mesmo raciocínio. Logo:
+	
+	\begin{itemize}
+		\item $E(X) = E(A+B+C) = E(A) + E(B) + E(C) = 3.36\overline{1}$
+		\item $Var(X) = Var(A+B+C) = Var(A) + Var(B) + Var(C) \cong 0.43596$
+	\end{itemize}
+			
+	 
 \end{document}
