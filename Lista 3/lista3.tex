@@ -88,6 +88,33 @@
 		\end{split}
 	\end{equation*}
 	
+	\section*{Exercício 5}
+	
+	\textbf{a)} Na $i$-ésima iteração, a probabilidade de o número analisado ser o maior do conjunto é de $\frac{1}{i}$, pois, com $i$ números, apenas 1 deles é o maior. \\
+	
+	\textbf{b)} A linha $5$ só pode ser executada $0$ ou $1$ vez. Ela será executada quando o número analisado for o maior do conjunto, ou seja, $P(X_i = 1) = \frac{1}{i}$, e, portanto, $P(X_i = 0) = \frac{i-1}{i}$. Logo, $X_i\sim Bernoulli(\frac{1}{i})$ e:
+	
+	\begin{center}
+		$E(X_i) = \sum_{k=0}^{1} k \cdot P(X=k) = 0 \cdot P(X=0) + 1 \cdot P(X=1) = P(X=1) = \frac{1}{i}$
+	\end{center}
+	
+	\textbf{c)} Para que $X_i$ seja independente de $X_j$, $P(X_j | X_i) = P(X_j)$.
+	
+	Vamos analisar $P(X_j | X_i)$. Seja $i < j$. $P(X_j | X_i)$ é a probabilidade de o $j$-ésimo número ser o maior no conjunto de $j$ números dado que o $i$-ésimo número era o maior do conjunto de $i$ números. Portanto, isso é a probabilidade de o $j$-ésimo ser o maior no conjunto de números entre as posições $i$ e $j$, ($i$ e $j$ incluídos). Como existem $j-i+1$ números nesse conjunto, então, $P(X_j | X_i) = \frac{1}{j-i+1} \neq P(X_j) = \frac{1}{j}$. 
+	
+	Como pode-se ver, os $X_i$ não são independentes. A distribuição deles é a mesma (Bernoulli). No entanto, o parâmetro é diferente para cada variável, o que mostra que elas não são identicamente distribuídas. \\
+	
+	\textbf{d)} Calculando a $E(T)$:
+	
+	\begin{equation*}
+		\begin{split}
+		E(T) & = E\left(\sum_{i=0}^{n} X_i\right) = \sum_{i=0}^{n} E(X_i) = \sum_{i=0}^{n} \frac{1}{i} = \\
+		& = 1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{n} \leq \int_{1}^{n} \frac{1}{x} \text{ d}x = \text{ln } n
+		\end{split}
+	\end{equation*}
+	
+	Portanto, $E(T) = \mathcal{O}(\text{log } n)$.
+	
 	\section*{Exercício 6}
 	
 	\textbf{b)} Sabendo, do item anterior, que $X+Y \sim Poisson(\lambda + \mu)$ e que $X$ e $Y$ são independentes, teremos: 
@@ -109,8 +136,8 @@
 	
 	\begin{itemize}
 		\item $A$ é o número de retiradas até o primeiro cupom do primeiro tipo.
-		\item $B$ é o número de retiradas até o primeiro cupom de tipo diferente do anterior.
-		\item $C$ é o número de retiradas até o primeiro cupom de tipo diferente dos anteriores.
+		\item $B$ é o número de retiradas a partir do cupom de primeiro tipo até o primeiro cupom de um tipo diferente.
+		\item $C$ é o número de retiradas a partir do momento em que temos dois cupons de tipos diferentes até o primeiro cupom do terceiro tipo.
 	\end{itemize}
 	
 	As retiradas são feitas com reposição. Então, teremos as seguintes definições para cada uma das variáveis aleatórias acima:
