@@ -1,0 +1,68 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage[table]{xcolor}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{palatino}
+\usepackage[brazil]{babel}
+\newlength{\tabcont}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\begin{document}
+	
+	\textbf{Nome}: Luís Felipe de Melo Costa Silva \\
+	\textbf{Número USP}: 9297961 
+	
+	\begin{center}
+		\LARGE \bf
+		Lista de Exercícios 4 - MAE0228
+	\end{center}
+
+	\section*{Exercício 3}
+	
+	\textbf{b)} Sendo $X_1, X_2, ..., X_k$ variáveis aleatórias independentes, com $X_i \sim \text{Binomial}(n_i, p)$, teremos:
+	
+	\begin{equation*}
+		\begin{split}
+			M_{X_1 + ... + X_k}(t) & = \prod_{i=1}^{k} M_{X_i}(t) = \prod_{i=1}^{k} (1-p+p\cdot e^t)^{n_i} = (1-p+p\cdot e^t)^{\sum_{i=1}^{k} n_i} = (1-p+p\cdot e^t)^{n_1+n_2+...+n_k} 
+		\end{split}
+	\end{equation*}
+	
+	Logo, $X_1 + X_2 + ... + X_k \sim \text{Binomial}(n_1+n_2+...+n_k,p)$ \\ 
+	
+	\textbf{d)} Sendo $X_1, X_2, ..., X_r$ variáveis aleatórias independentes, com $X_i \sim \text{Exponencial}(\lambda)$, teremos:
+	
+	\begin{equation*}
+		\begin{split}
+			M_{X_1 + ... + X_r}(t) & = \prod_{i=1}^{r} M_{X_i}(t) = \prod_{i=1}^{r} \frac{\lambda}{\lambda - t} = \left(\frac{\lambda}{\lambda - t}\right)^r
+		\end{split}
+	\end{equation*}
+	
+	Logo, $X_1 + X_2 + ... + X_r \sim \text{Gama}(r, \lambda)$ 
+	
+	\section*{Exercício 5}
+	
+	Sendo $Y$ uma variável aleatória discreta:
+	
+	\begin{equation*}
+		\begin{split}
+			M_Y(t) & = E(e^{tY}) = \int_{-\infty}^{+\infty} e^{ty} \cdot f_Y(y)\text{d}y = \int_{-\infty}^{u} e^{ty} \cdot f_Y(y)\text{d}y + \int_{u}^{+\infty} e^{ty} \cdot f_Y(y)\text{d}y \\
+			& \geq \int_{u}^{+\infty} e^{ty} \cdot f_Y(y)\text{d}y \geq \int_{u}^{+\infty} e^{tu} \cdot f_Y(y)\text{d}y \\
+			& \geq e^{tu} \cdot \int_{u}^{+\infty} f_Y(y)\text{d}y = e^{ut} \cdot P(Y > u)\\
+		\end{split}
+	\end{equation*}
+	
+	Portanto,
+	
+	\begin{center}
+		$e^{ut} \cdot P(Y > u) \leq M_Y(t)$ \\
+		$P(Y > u) \leq e^{-ut} \cdot M_Y(t)$ \\
+	\end{center}
+	 
+	\qed 
+	 
+\end{document}
