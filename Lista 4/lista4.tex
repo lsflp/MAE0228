@@ -21,6 +21,53 @@
 		\LARGE \bf
 		Lista de Exercícios 4 - MAE0228
 	\end{center}
+	
+	\section*{Exercício 1}
+	
+	\textbf{a)} Vamos definir $Y_i$ como o número de insetos gerados pelo $i$-ésimo ovo. Logo, 
+	
+	 \begin{equation*}
+		 Y_i=
+			 \begin{cases}
+			 1, & \text{com probabilidade } p  \\
+			 0, & \text{c. c.}
+			 \end{cases}
+	 \end{equation*}
+	 
+	 Pode-se observar que $Y_i \sim$ Bernoulli$(p)$. Sendo N a variável aleatória de distribuição Poisson$(\lambda)$ que determina o número de ovos colocados pelo inseto-mãe, podemos definir $X$ como uma partição da seguinte maneira:
+	 
+	 \begin{center}
+	 	$X =\sum_{i=1}^{N} Y_i$
+	 \end{center}
+	 
+	 \textbf{b)} Usando a definição, a função geradora de momentos de $X$ é:
+	 
+	 \begin{equation*}
+		 \begin{split}
+			 M_X(t) & = G_N(M_{Y_i}(t)) = G_N(E(e^{tY_i})) = G_N(1 - p + pe^t) = \\
+			 & = E((1 - p + pe^t)^N) = \sum_{k=0}^{\infty} (1 - p + pe^t)^i \cdot \frac{e^{-\lambda} \lambda^i}{i!} = \\
+			 & = e^{-\lambda} \sum_{k=0}^{\infty} \frac{[(1 - p + pe^t)\cdot\lambda]^i}{i!} = e^{-\lambda} e^{(1 - p + pe^t)\cdot\lambda} = e^{\lambda p (e^t -1)}
+		 \end{split}
+	 \end{equation*}
+	 
+	 Logo, $X \sim$ Poisson$(\lambda p)$. Com isso, sabemos que a função geradora de probabilidade de $X$ é $G_x(t) = e^{\lambda p (t -1)}$.
+	 
+	 \textbf{c)} Para calcular $ E(X) $ e $ Var(X) $, vamos usar os momentos. Sabemos que $ E(X^i) $, o $ i $-ésimo momento da variável $ X $, é a $ i $-ésima derivada de $ M_X(t) $ com relação a $ t $. Com isso:
+	 
+	 \begin{equation*}
+	 	E(X) = M_x'(t) \rvert_{t=0} = (e^{\lambda p (e^t -1)})'\rvert_{t=0} = (e^{\lambda p (e^t -1)} \cdot \lambda pe^t) \rvert_{t=0} = \lambda p
+	 \end{equation*}
+	 
+	 Agora, para a variância, precisamos de $ E(X^2) $.
+	 
+	 \begin{equation*}
+		 \begin{split}
+			 E(X^2) & =  M_x''(t) \rvert_{t=0} = (e^{\lambda p (e^t -1)})''\rvert_{t=0} = (e^{\lambda p (e^t -1)} \cdot \lambda pe^t)'\rvert_{t=0} = \\
+			 & = (e^{\lambda p (e^t -1)} \cdot \lambda pe^t + e^{\lambda p (e^t -1)} \cdot \lambda pe^t \cdot \lambda pe^t)\rvert_{t=0} = \lambda p + (\lambda p)^2
+		 \end{split}
+	 \end{equation*}
+	 
+	 Portanto, $ Var(X) = \lambda p + (\lambda p)^2 - (\lambda p)^2 = \lambda p $
 
 	\section*{Exercício 3}
 	
