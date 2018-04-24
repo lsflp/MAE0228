@@ -91,6 +91,22 @@
 	
 	Logo, $X_1 + X_2 + ... + X_r \sim \text{Gama}(r, \lambda)$ 
 	
+	\section*{Exercício 4}
+	
+	\textbf{a)} Queremos $ Z_n = \text{min}\{X_1, X_2, ..., X_n\} $. Vamos chamar de $ U_1, U_2, ..., U_n $ as mesmas variáveis, só que ordenadas do menor para o maior. Logo, o que estamos procurando é $ P(U_1 < z) $. Então:
+	
+	\begin{equation*}
+		\begin{split}
+		P(U_1 < z) & = 1 - P(X_1 > z, X_2 > z, ..., X_n > z) = 1 - \left[ (1 - F_{X_1}(z)) \cdot (1 - F_{X_2}(z)) \cdot ... \cdot (1 - F_{X_n}(z)) \right] \\
+		& = 1 - \left[ (1 - (1 - e^{-\lambda_1 z})) \cdot (1 - (1 - e^{-\lambda_2 z})) \cdot ... \cdot (1 - (1 - e^{-\lambda_n z})) \right] \\
+		& = 1 - \left[ (e^{-\lambda_1 z}) \cdot (e^{-\lambda_2 z}) \cdot ... \cdot (e^{-\lambda_n z}) \right] = 1 - e^{-(\lambda_1+\lambda_2+...+\lambda_n)z}
+		\end{split}
+	\end{equation*} 
+	
+	$ Z_n \sim \text{Exponencial}(\lambda_1+\lambda_2+...+\lambda_n) $
+	
+	\textbf{b)}
+	
 	\section*{Exercício 5}
 	
 	Sendo $Y$ uma variável aleatória discreta:
