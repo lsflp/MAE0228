@@ -93,19 +93,29 @@
 	
 	\section*{Exercício 4}
 	
-	\textbf{a)} Queremos $ Z_n = \text{min}\{X_1, X_2, ..., X_n\} $. Vamos chamar de $ U_1, U_2, ..., U_n $ as mesmas variáveis, só que ordenadas do menor para o maior. Logo, o que estamos procurando é $ P(U_1 < z) $. Então:
+	\textbf{a)} Queremos $ Z_n = \text{min}\{X_1, X_2, ..., X_n\} $. Vamos chamar de $ U_1, U_2, ..., U_n $ as mesmas variáveis, só que ordenadas do menor para o maior. Logo, o que estamos procurando é $ P(U_1 < z) $, que é $ 1-P(U_1 \geq z) $. Então:
 	
 	\begin{equation*}
 		\begin{split}
-		P(U_1 < z) & = 1 - P(X_1 > z, X_2 > z, ..., X_n > z) = 1 - \left[ (1 - F_{X_1}(z)) \cdot (1 - F_{X_2}(z)) \cdot ... \cdot (1 - F_{X_n}(z)) \right] \\
+		P(U_1 < z) & = 1 - P(X_1 \geq z, X_2 \geq z, ..., X_n \geq z) = 1 - \left[ (1 - F_{X_1}(z)) \cdot (1 - F_{X_2}(z)) \cdot ... \cdot (1 - F_{X_n}(z)) \right] \\
 		& = 1 - \left[ (1 - (1 - e^{-\lambda_1 z})) \cdot (1 - (1 - e^{-\lambda_2 z})) \cdot ... \cdot (1 - (1 - e^{-\lambda_n z})) \right] \\
 		& = 1 - \left[ (e^{-\lambda_1 z}) \cdot (e^{-\lambda_2 z}) \cdot ... \cdot (e^{-\lambda_n z}) \right] = 1 - e^{-(\lambda_1+\lambda_2+...+\lambda_n)z}
 		\end{split}
 	\end{equation*} 
 	
-	$ Z_n \sim \text{Exponencial}(\lambda_1+\lambda_2+...+\lambda_n) $
+	$ Z_n \sim \text{Exponencial}(\lambda_1+\lambda_2+...+\lambda_n) $ \\
 	
-	\textbf{b)}
+	\textbf{b)} Para um $ X_k $ qualquer ser um mínimo, fazemos:
+	
+	\begin{equation*}
+		\begin{split}
+			P(Z_n=X_k) & = \int_{0}^{\infty} P(Z_n = x_k | X_k = x_k) \cdot P(X_k = x_k) \text{d}x_k = \\
+			& = \int_{0}^{\infty} \frac{P(\bigcap_{i=0}^{n} Xi \geq x_k \bigcap X_k = x_k)}{P(X_k = x_k)} \cdot P(X_k = x_k) \text{d}x_k  = \int_{0}^{\infty} P\left(\bigcap_{i=0}^{n} Xi \geq x_k \bigcap X_k = x_k\right) \text{d}x_k  \\
+			& \stackrel{ind.}{=} \int_{0}^{\infty} \prod_{i \neq k} P(Xi \geq x_k) \cdot P(X_k=x_k) \text{d}x_k = \int_{0}^{\infty} \prod_{i \neq k} \left[ \int_{x_k}^{\infty} \lambda_i e^{-\lambda_ix_i}\text{d}x_i \right] \cdot (\lambda_k e^{-\lambda_k x_k}) \text{d}x_k \\
+			& = \int_{0}^{\infty} \prod_{i \neq k} [1 - e^{-\lambda_i x_i} \rvert_{x_k}^{\infty} ] \cdot (\lambda_k e^{-\lambda_k x_k}) \text{d}x_k = \int_{0}^{\infty} \prod_{i \neq k} (e^{-\lambda_i x_k}) \cdot (\lambda_k e^{-\lambda_k x_k}) \text{d}x_k \\
+			& = \lambda_k \int_{0}^{\infty} e^{-\sum_{i=0}^{n} \lambda_i x_k}\text{d}x_k = -\lambda_k \frac{e^{\sum_{i=0}^{n} \lambda_i x_k} |_0^\infty}{\sum_{i=0}^{n} \lambda_i} = \frac{\lambda_k}{\lambda_1 + \lambda_2 + ... +\lambda_n} 
+		\end{split}
+	\end{equation*}
 	
 	\section*{Exercício 5}
 	
