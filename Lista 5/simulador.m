@@ -1,4 +1,5 @@
 function simulador()
+   % Gera os dados X_i
    for i = 1:3
       N{i} = [];
       X{i} = [];
@@ -13,6 +14,7 @@ function simulador()
       endfor
    endfor
    
+   % Calcula os S_i
    for i = 1:3
       soma = 0;
       S{i} = [];
@@ -22,6 +24,7 @@ function simulador()
       endfor
    endfor
    
+   % Calcula os Y_i
    for i = 1:3
       Y{i} = [];
       for j = 1:500
@@ -29,6 +32,7 @@ function simulador()
       endfor
    endfor
    
+   % Calcula os Y_i
    for i = 1:3
       Z{i} = [X{i}(1)];
       for j = 2:500
@@ -37,53 +41,30 @@ function simulador()
       endfor
    endfor
    
+   % Imprime os gráficos
    figure
-   subplot(3,3,1)       % add first plot in 2 x 1 grid
-   plot(N{1}, S{1});
-   xlabel("n");
-   ylabel("Sn");
-   title('Gráfico para Sn')
-   subplot(3,3,2)
-   plot(N{2}, S{2});
-   xlabel("n");
-   ylabel("Sn");
-   title('Gráfico para Sn')
-   subplot(3,3,3)
-   plot(N{3}, S{3});
-   xlabel("n");
-   ylabel("Sn");
-   title('Gráfico para Sn')
-
-   subplot(3,3,4)       % add first plot in 2 x 1 grid
-   plot(N{1}, Y{1});
-   xlabel("n");
-   ylabel("Yn");
-   title('Gráfico para Yn')
-   subplot(3,3,5)
-   plot(N{2}, Y{2});
-   xlabel("n");
-   ylabel("Yn");
-   title('Gráfico para Yn')
-   subplot(3,3,6)
-   plot(N{3}, Y{3});
-   xlabel("n");
-   ylabel("Yn");
-   title('Gráfico para Yn')
+   for i = 1:3
+      subplot(3,3,i)      
+      plot(N{i}, S{i}, 'k');
+      xlabel("n");
+      ylabel("Sn");
+      title('Gráfico para Sn')
+   endfor
+  
+   for i = 1:3
+      subplot(3,3,i+3)      
+      plot(N{i}, Y{i}, 'k');
+      xlabel("n");
+      ylabel("Yn");
+      title('Gráfico para Yn')
+   endfor 
    
-   subplot(3,3,7)       % add first plot in 2 x 1 grid
-   plot(N{1}, Z{1});
-   xlabel("n");
-   ylabel("Zn");
-   title('Gráfico para Zn')
-   subplot(3,3,8)
-   plot(N{2}, Z{2});
-   xlabel("n");
-   ylabel("Zn");
-   title('Gráfico para Zn')
-   subplot(3,3,9)
-   plot(N{3}, Z{3});
-   xlabel("n");
-   ylabel("Zn");
-   title('Gráfico para Zn') 
+   for i = 1:3
+      subplot(3,3,i+6)      
+      plot(N{i}, Z{i}, 'k');
+      xlabel("n");
+      ylabel("Zn");
+      title('Gráfico para Zn')
+   endfor 
    
 endfunction
