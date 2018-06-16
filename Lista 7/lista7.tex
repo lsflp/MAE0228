@@ -1,0 +1,156 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage[table]{xcolor}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{Alegreya}
+\usepackage[brazil]{babel}
+\newlength{\tabcont}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\begin{document}
+	
+	\textbf{Nome}: Luís Felipe de Melo Costa Silva \\
+	\textbf{Número USP}: 9297961 
+	
+	\begin{center}
+		\LARGE \bf
+		Lista de Exercícios 7 - MAE0228
+	\end{center}
+	 
+	 \section*{Exercício 2}
+	 
+	 \begin{equation*}
+	 	 \begin{split}
+	 	 \text{Vamos definir: } & A = \{A_t; t\geq0\} \text{ como o número de fregueses que entram pela porta A até o instante } t.\\
+	 	                        & B = \{B_t; t\geq0\} \text{ como o número de fregueses que entram pela porta B até o instante } t.
+	 	 \end{split}
+	 \end{equation*}
+	 
+	 \textbf{a)} De acordo com a definição acima, $X_t = A_t + B_t$. Vamos mostrar, usando Funções Geradoras de Momentos, que $ X_t $ é um Processo de Poisson.
+	 
+	 \begin{equation*}
+	 	M_{X_t}(s) = M_{A_t+B_t}(s) \stackrel{ind.}{=} M_{A_t}(s) \cdot M_{B_t}(s) = e^{15\cdot(e^s-1)} \cdot e^{10\cdot(e^s-1)} = e^{25\cdot(e^s-1)} 
+	 \end{equation*}
+	 
+	Pela unicidade das Funções Geradoras de Momentos, temos que $ X_t $ é um Processo de Poisson com taxa média (parâmetro) de 25 fregueses por minuto.
+	
+	\textbf{b)} O instante em que o primeiro freguês entra por A é $ T_1 \sim \Gamma(1, 15) \sim \text{Exponencial}(15)$. Para B, esse instante é dado por $ V_1 \sim \Gamma(1, 10) \sim \text{Exponencial}(10)$. Seja $Y = \text{min}(T_1, V_1)$, teremos:
+	
+	\begin{equation*}
+		\begin{split}
+		F_Y(y) & = P(Y \leq y) = 1 - P(Y > y) = 1 - P(T_1 > y, V_1 > y) \stackrel{ind.}{=} 1 - P(T_1 > y) \cdot P(V_1 > y) \\
+		& = 1 - \left[\int_{y}^{\infty}15\cdot e^{-15t} \text{d}t \cdot \int_{y}^{\infty}10\cdot e^{-10v} \text{d}v\right] =  1 - \left[\left(-e^{-15t}\rvert_{y}^{\infty}\right) \cdot \left(-e^{-10v}\rvert_{y}^{\infty}\right)\right] \\
+		& = 1 - \left[e^{-15y} \cdot e^{-10y}\right] = 1 - e^{-25y} \Rightarrow f_Y(y) = 25 \cdot e^{-25y} \Rightarrow Y \sim \text{Exponencial}(25)
+		\end{split}
+	\end{equation*}
+	
+	\textbf{c)} Neste item, queremos encontrar $P(T_1 < V_1)$. Fazemos:
+	
+	\begin{equation*}
+		\begin{split}
+			P(T_1 < V_1) & \stackrel{ind.}{=} \int_{0}^{\infty} \int_{0}^{v} 15\cdot e^{-15t} \cdot 10\cdot e^{-10v} \text{d}t \text{ d}v = \int_{0}^{\infty} 10\cdot e^{-10v} \cdot \left[\int_{0}^{v} 15\cdot e^{-15t} \text{d}t\right] \text{ d}v \\
+			& = \int_{0}^{\infty} 10\cdot e^{-10v} \cdot \left[-e^{-15t} \rvert_{0}^{v}\right] \text{ d}v = \int_{0}^{\infty} 10\cdot e^{-10v} \cdot \left[1 - e^{-15v} \right] \text{ d}v \\
+			& = \int_{0}^{\infty} 10\cdot e^{-10v} \text{ d}v - \int_{0}^{\infty} 10\cdot e^{-25v} \text{ d}v = 1 - \frac{10}{25} \int_{0}^{\infty} 25\cdot e^{-25v} \text{ d}v \\
+			& = 1 - \frac{10}{25} = \frac{15}{25}
+		\end{split}
+	\end{equation*}    
+	 
+	 \section*{Exercício 5}
+	 
+	 \section*{Exercício 6}
+	 
+	 Vamos definir esse processo assim: $ N = \{N(t); t\geq0\} $, que é o número de carros que passam pelo pedágio da Imigrantes até o instante $ t $. O parâmetro é $ \lambda = 1 $.
+	 
+	 \textbf{a)} Para este item, vamos configurar $ t = 20 $.
+	 \begin{equation*}
+	 	\begin{split}
+		 	P[N(20) < 3] & = \sum_{k=0}^{2} P[N(20) = k] = P[N(20) = 0] + P[N(20) = 1] + P[N(20) = 2] \\
+		 	& = \frac{e^{-1\cdot 20}\cdot(1\cdot 20)^0}{0!} + \frac{e^{-1\cdot 20}\cdot(1\cdot 20)^1}{1!} + \frac{e^{-1\cdot 20}\cdot(1\cdot 20)^2}{2!} \cong 4.55 \cdot 10^{-7}
+	 	\end{split}
+	 \end{equation*}
+	 
+	 \textbf{b)} Neste item, vamos considerar $ t = 5 $.
+	 \begin{equation*}
+		 \begin{split}
+			 P[N(5) = 0] & = \frac{e^{-1\cdot 5}\cdot(1\cdot 5)^0}{0!} = e^{-5} \cong 0.006
+		 \end{split}
+	 \end{equation*}
+	 
+	 \textbf{c)} Vamos usar partição para a resolução desse item. Cada veículo que passa pela Imigrantes é classificado como um caminhão, com probabilidade $ p = 0.15 $. Portanto, é possível definir dois processos independentes, que compõem o processo $ N $ já definido:
+	 
+	 \begin{itemize}
+	 	\item $ X = \{X(t); t\geq0\} $, que representa o número de caminhões que passam pelo pedágio da Imigrantes. Ele possui o parâmetro $\lambda_X = 0.15$ caminhões por minuto.
+	 	\item $ Y = \{Y(t); t\geq0\} $, para os outros veículos. Ele possui o parâmetro $\lambda_Y = 0.85$ caminhões por minuto.
+	 \end{itemize}
+	 
+	 Agora é possível calcular a probabilidade de ver mais de um caminhão durante a troca de pneus ($ t = 20 $).
+	 
+	 \begin{equation*}
+		 \begin{split}
+			 P[X(20) \geq 1] & = 1 - P[X(20) = 0] = 1 - \frac{e^{-0.15\cdot 20}\cdot(0.15\cdot 20)^0}{0!} = 1 - \frac{e^{-3}\cdot 3^0}{0!} \cong 0.0498
+		 \end{split}
+	 \end{equation*}
+	 
+	 \textbf{d)} Queremos o valor esperado de veículos dado que passaram 3 caminhões. Portanto:
+	 
+	 \begin{equation*}
+		 \begin{split}
+			 E[N(20) | X(20) = 3] & = \sum_{k=0}^{\infty} k \cdot P[N(20) = k | X(20) = 3] = \sum_{k=0}^{\infty} k \cdot \frac{P[N(20) = k \cap X(20) = 3]}{P[X(20) = 3]} \\
+			 & = \sum_{k=3}^{\infty} k \cdot \frac{P[Y(20) = k-3]}{P[X(20) = 3]} = \frac{1}{P[X(20) = 3]} \cdot \sum_{k=3}^{\infty} k \cdot P[Y(20) = k-3] \\
+			 & = \frac{1}{P[X(20) = 3]} \cdot \sum_{k=3}^{\infty} k \cdot \frac{e^{-0.85\cdot 20} \cdot (0.85\cdot 20)^{k-3}}{(k-3)!} \\
+			 & = \frac{1}{P[X(20) = 3]} \cdot \sum_{k=3}^{\infty} k \cdot \frac{e^{-17} \cdot 17^{k-3}}{(k-3)!} \\
+			 & \stackrel{j = k-3}{=} \frac{1}{P[X(20) = 3]} \cdot \sum_{j=0}^{\infty} (j+3) \cdot \frac{e^{-17} \cdot 17^j}{j!} \\
+			 & \stackrel{J \sim Poisson(17)}{=} \frac{1}{P[X(20) = 3]} \cdot E(J+3) = \frac{3!}{e^{-0.15 \cdot 20}\cdot (0.15 \cdot 20)^3} \cdot [E(J) + 3] \\
+			 & = \frac{3!}{e^{-3}\cdot 3^3} \cdot [17 + 3] = \frac{40}{e^{-3}\cdot 3^2}
+		 \end{split}
+	 \end{equation*}
+	 
+	 \section*{Exercício 7}
+	 
+	 Vamos definir as variáveis que vamos usar:
+	 
+	 \begin{itemize}
+	 	\item $ A $: tempo de morte de Andréa. $A \sim \text{Exponencial}(\mu_A)$.
+	 	\item $ B $: tempo de morte de Bernardo. $B \sim \text{Exponencial}(\mu_B)$
+	 	\item $ N = \{N(t); t\geq0\}$: Número de rins doados até o instante $ t $. O parâmetro é $ \lambda $.
+	 	\item $ S_k $: o instante em que o k-ésimo rim é doado. $S_k \sim \Gamma(k, \lambda)$.
+	 \end{itemize}
+	 
+	 \textbf{a)} Andréa recebe um rim quanto o primeiro rim é doado antes de sua morte, ou seja, $ S_1 < A $. Sabemos que $ S_1 $ é uma $ \Gamma(1, \lambda) $, e portanto é uma Exponencial$ (\lambda) $. Portanto, fazendo os cálculos de uma forma análoga ao item \textbf{c} do \textbf{Exercício 2}, temos que:
+	 
+	 \begin{equation*}
+	 	P(\text{Andréa receber um rim}) = P(S_1 < A) = \frac{\lambda}{\lambda + \mu_A}
+	 \end{equation*}
+	 
+	 \textbf{b)} Existem duas maneiras para que Bernardo receba um rim. A mais feliz é quando Andréa recebe um primeiro rim e ele, o segundo, antes que venha a falecer. A outra maneira é quando o primeiro rim é doado depois da morte de Andréa e ele o recebe antes de falecer. Para saber a probabilidade de que ele receba um rim, devemos somar as probabilidades desses eventos, assumindo independência entre o tempo que cada um dos pacientes tem de vida.
+	 
+	 \begin{equation*}
+		 \begin{split}
+			 P(\text{Bernardo receber um rim}) & = P(S_1 < A) \cdot P(S_2 < B) + P(A < S_1 < B) \\
+			 & = P(S_1 < A) \cdot P(S_2 < B) + P(A < S_1) \cdot P(S_1 < B) \\
+			 & \stackrel{2.c)}{=} \frac{\lambda}{\lambda + \mu_A} \cdot P(S_2 < B) + \frac{\mu_A}{\lambda + \mu_A} \cdot \frac{\lambda}{\lambda + \mu_B} \\
+			 & \stackrel{obs.}{=} \frac{\lambda}{\lambda + \mu_A} \cdot \left(\frac{\lambda}{\lambda + \mu_B} \right)^2 + \frac{\mu_A}{\lambda + \mu_A} \cdot \frac{\lambda}{\lambda + \mu_B}
+		 \end{split}
+	 \end{equation*}
+	 
+	 \textbf{Obs:} 
+	  \begin{equation*}
+		  \begin{split}
+			 P(S_2 < B) & \stackrel{ind.}{=} \int_{0}^{\infty} \int_{0}^{v} \frac{\lambda^2}{\Gamma(2)} \cdot e^{-\lambda s} \cdot s \cdot \mu_B\cdot e^{-\mu_Bb} \text{d}s \text{ d}b = \int_{0}^{\infty} \mu_B\cdot e^{-\mu_Bb} \cdot \left[\int_{0}^{v} \frac{\lambda^2}{\Gamma(2)} \cdot  e^{-\lambda s} \cdot s \text{ d}s \right]\text{ d}b \\
+			 & = \int_{0}^{\infty} \mu_B\cdot e^{-\mu_Bb} \cdot \left[ -e^{-\lambda s} \cdot (\lambda s + 1) \rvert_{0}^{b} \right]\text{ d}b =  \int_{0}^{\infty} \mu_B\cdot e^{-\mu_Bb} \cdot \left[ 1 - e^{-\lambda b} \cdot (\lambda b + 1) \right]\text{ d}b = \\
+			 & = \int_{0}^{\infty} \mu_B\cdot e^{-\mu_Bb} \text{ d}b - \int_{0}^{\infty} \mu_B\cdot e^{-\mu_Bb} \cdot  e^{-\lambda b} \cdot (\lambda b + 1)\text{ d}b \\
+			 & = \int_{0}^{\infty} \mu_B\cdot e^{-\mu_Bb} \text{ d}b - \int_{0}^{\infty} \mu_B\cdot e^{-(\mu_B + \lambda)b} \cdot \lambda b \text{ d}b - \int_{0}^{\infty} \mu_B\cdot e^{-(\mu_B + \lambda)b} \text{ d}b \\
+			 & = 1 - \int_{0}^{\infty} \mu_B\cdot e^{-(\mu_B + \lambda)b} \cdot \lambda b \text{ d}b - \int_{0}^{\infty} \mu_B\cdot e^{-(\mu_B + \lambda)b} \text{ d}b \\
+			 & = 1 - \frac{\mu_B \cdot \lambda \cdot \Gamma(2)}{(\mu_B + \lambda)^2}\int_{0}^{\infty} \frac{(\mu_B + \lambda)^2}{\Gamma(2)} \cdot e^{-(\mu_B + \lambda)b} \cdot b \text{ d}b - \int_{0}^{\infty} \mu_B\cdot e^{-(\mu_B + \lambda)b} \text{ d}b \\
+			 & = 1 - \frac{\mu_B \cdot \lambda \cdot \Gamma(2)}{(\mu_B + \lambda)^2}- \frac{\mu_B}{(\mu_B + \lambda)} \cdot \int_{0}^{\infty} (\mu_B + \lambda) \cdot e^{-(\mu_B + \lambda)b} \text{ d}b =  1 - \frac{\mu_B \cdot \lambda}{(\mu_B + \lambda)^2}- \frac{\mu_B}{(\mu_B + \lambda)} \\
+			 & = \left(\frac{\lambda}{\lambda + \mu_B} \right)^2
+		  \end{split}
+	  \end{equation*}
+	 
+\end{document}
