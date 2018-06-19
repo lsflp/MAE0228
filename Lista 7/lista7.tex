@@ -63,6 +63,20 @@
 	 
 	 \section*{Exercício 5}
 	 
+	 \begin{equation*}
+	 	\begin{split}
+		 	P[N(S) = k | N(t) = n] & = \frac{P[N(s) = k, N(t) = n]}{P[N(t) = n]} = \frac{P[N(s) = k, N(t) - N(s) = n-k]}{P[N(t) = n]} \\
+		 	& \stackrel{inc.\text{ }ind.}{=} \frac{P[N(s) = k]\cdot P[N(t) - N(s) = n-k]}{P[N(t) = n]} \\
+		 	& \stackrel{inc.\text{ }est.}{=} \frac{P[N(s) = k]\cdot P[N(t-s) = n-k]}{P[N(t) = n]} \\
+		 	& = \frac{\frac{e^{-\lambda s} \cdot (\lambda s)^k}{k!}\cdot \frac{e^{-\lambda (t-s)} \cdot [\lambda (t-s)]^{n-k}}{(n-k)!}}{\frac{e^{-\lambda t} \cdot (\lambda t)^n}{n!}} \\
+		 	& = \frac{n!}{k!(n-k)!} \cdot \frac{e^{-\lambda s} \cdot e^{-\lambda (t-s)}}{e^{-\lambda t}} \cdot \frac{(\lambda s)^k \cdot [\lambda (t-s)]^{n-k}}{(\lambda t)^n} \\
+		 	& = \frac{n!}{k!(n-k)!} \cdot \frac{s^k \cdot (t-s)^{n-k}}{t^n} = \frac{n!}{k!(n-k)!} \cdot \frac{s^k}{t^k} \cdot \frac{(t-s)^{n-k}}{t^{n-k}} \\
+		 	& = \frac{n!}{k!(n-k)!} \cdot \left(\frac{s}{t}\right)^k \cdot \left(\frac{t-s}{t}\right)^{n-k} = \frac{n!}{k!(n-k)!} \cdot \left(\frac{s}{t}\right)^k \cdot \left(1- \frac{s}{t}\right)^{n-k}	 	
+	 	\end{split}
+	 \end{equation*}
+	 
+	 \qed
+	 
 	 \section*{Exercício 6}
 	 
 	 Vamos definir esse processo assim: $ N = \{N(t); t\geq0\} $, que é o número de carros que passam pelo pedágio da Imigrantes até o instante $ t $. O parâmetro é $ \lambda = 1 $.
@@ -78,7 +92,7 @@
 	 \textbf{b)} Neste item, vamos considerar $ t = 5 $.
 	 \begin{equation*}
 		 \begin{split}
-			 P[N(5) = 0] & = \frac{e^{-1\cdot 5}\cdot(1\cdot 5)^0}{0!} = e^{-5} \cong 0.006
+			 P[N(5) = 0] & = \frac{e^{-1\cdot 5}\cdot(1\cdot 5)^0}{0!} = e^{-5} \cong 0.007
 		 \end{split}
 	 \end{equation*}
 	 
@@ -93,7 +107,7 @@
 	 
 	 \begin{equation*}
 		 \begin{split}
-			 P[X(20) \geq 1] & = 1 - P[X(20) = 0] = 1 - \frac{e^{-0.15\cdot 20}\cdot(0.15\cdot 20)^0}{0!} = 1 - \frac{e^{-3}\cdot 3^0}{0!} \cong 0.0498
+			 P[X(20) \geq 1] & = 1 - P[X(20) = 0] = 1 - \frac{e^{-0.15\cdot 20}\cdot(0.15\cdot 20)^0}{0!} = 1 - \frac{e^{-3}\cdot 3^0}{0!} \cong 0.9502
 		 \end{split}
 	 \end{equation*}
 	 
@@ -101,13 +115,8 @@
 	 
 	 \begin{equation*}
 		 \begin{split}
-			 E[N(20) | X(20) = 3] & = \sum_{k=0}^{\infty} k \cdot P[N(20) = k | X(20) = 3] = \sum_{k=0}^{\infty} k \cdot \frac{P[N(20) = k \cap X(20) = 3]}{P[X(20) = 3]} \\
-			 & = \sum_{k=3}^{\infty} k \cdot \frac{P[Y(20) = k-3]}{P[X(20) = 3]} = \frac{1}{P[X(20) = 3]} \cdot \sum_{k=3}^{\infty} k \cdot P[Y(20) = k-3] \\
-			 & = \frac{1}{P[X(20) = 3]} \cdot \sum_{k=3}^{\infty} k \cdot \frac{e^{-0.85\cdot 20} \cdot (0.85\cdot 20)^{k-3}}{(k-3)!} \\
-			 & = \frac{1}{P[X(20) = 3]} \cdot \sum_{k=3}^{\infty} k \cdot \frac{e^{-17} \cdot 17^{k-3}}{(k-3)!} \\
-			 & \stackrel{j = k-3}{=} \frac{1}{P[X(20) = 3]} \cdot \sum_{j=0}^{\infty} (j+3) \cdot \frac{e^{-17} \cdot 17^j}{j!} \\
-			 & \stackrel{J \sim Poisson(17)}{=} \frac{1}{P[X(20) = 3]} \cdot E(J+3) = \frac{3!}{e^{-0.15 \cdot 20}\cdot (0.15 \cdot 20)^3} \cdot [E(J) + 3] \\
-			 & = \frac{3!}{e^{-3}\cdot 3^3} \cdot [17 + 3] = \frac{40}{e^{-3}\cdot 3^2}
+			 E[N(20) | X(20) = 3] & = E[X(20) + Y(20) | X(20) = 3] = E[3 + Y(20)] \\
+			 & \stackrel{lin.}{=} 3 + E[Y(20)] = 3 + 0.85 \cdot 20 = 3 + 17 = 20
 		 \end{split}
 	 \end{equation*}
 	 
