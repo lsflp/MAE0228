@@ -25,15 +25,32 @@
 	 
 	\section*{Exercício 4}
 	
-	\textbf{a)} $$
-	G = \left[\begin{array}{ccccccc}
-	          -\lambda  & \lambda          & 0                & 0                & 0       & 0   & ... \\
-	          \mu       &  -(\lambda+\mu)  & \lambda          & 0                & 0       & 0   & ... \\
-	          0         & \mu              &  -(\lambda+\mu)  & \lambda          & 0       & 0   & ... \\
-	          0         & 0                & \mu              &  -(\lambda+\mu)  & \lambda & 0   & ... \\ 
-	          ...       & ...              & ...              &  ...             & ...     & ... & ... \\
-	    \end{array}\right]
-	$$
+	\textbf{a)}  $ \{X_t; t\geq0\} $ é uma cadeia de Markov em tempo contínuo porque pode ser modelada como um processo de nascimento e morte. Sua taxa de nascimento é $ \lambda_i = \lambda $, para $ i = 0, 1, 2, ... $ e a taxa de morte é $ \mu_i = \mu $, para $ i = 1, 2, 3, ... $. O espaço de estados é $ S=\{0, 1, 2, 3, ...\} $ e seu gerador infinitesimal G é:
+	
+	\begin{center}
+		$
+		G = \left[\begin{array}{ccccccc}
+		          -\lambda  & \lambda          & 0                & 0                & 0       & 0   & ... \\
+		          \mu       &  -(\lambda+\mu)  & \lambda          & 0                & 0       & 0   & ... \\
+		          0         & \mu              &  -(\lambda+\mu)  & \lambda          & 0       & 0   & ... \\
+		          0         & 0                & \mu              &  -(\lambda+\mu)  & \lambda & 0   & ... \\ 
+		          \vdots       & \vdots              & \vdots              &  \vdots             & \vdots     & \vdots & \vdots \\
+		    \end{array}\right]
+		$
+	\end{center}
+	
+	\textbf{b)} Para calcularmos a distribuição estacionária, vamos fazer $ \pi G = 0 $:\\
+	
+	$ \begin{cases}
+		-\lambda \pi_0 + \mu \pi_1 = 0 \to \pi_1 = \frac{\lambda}{\mu} \pi_0\\
+		\lambda \pi_0 -(\lambda+\mu) \pi_1 + \mu \pi_2 = 0 \to \pi_2 = \left(\frac{\lambda}{\mu}\right)^2 \pi_0\\
+		\lambda \pi_1 -(\lambda+\mu) \pi_2 + \mu \pi_3 = 0 \to \pi_3 = \left(\frac{\lambda}{\mu}\right)^3 \pi_0\\
+		\vdots \\
+		\lambda \pi_{k-2} -(\lambda+\mu) \pi_{k-1} + \mu \pi_k = 0 \to \pi_k = \left(\frac{\lambda}{\mu}\right)^k \pi_0\\
+		\vdots \\ \\
+	\end{cases} $
+	
+	Como $ \sum_{i \in S} \pi_i = 1 $, temos que $ \pi_0 \left(1 + \sum_{n=1}^{\infty} \left(\frac{\lambda}{\mu}\right)^n\right) = 1 $. A soma $ \sum_{n=1}^{\infty} \left(\frac{\lambda}{\mu}\right)^n $ só converge quando $ \lambda < \mu $. Quando isso acontece, a soma é finita, e existe a distribuição estacionária.
 	
 	\section*{Exercício 7}
 	\section*{Exercício 8}
