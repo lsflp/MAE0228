@@ -25,16 +25,16 @@
 	 
 	\section*{Exercício 4}
 	
-	\textbf{a)}  $ \{X_t; t\geq0\} $ é uma cadeia de Markov em tempo contínuo porque pode ser modelada como um processo de nascimento e morte. Sua taxa de nascimento é $ \lambda_i = \lambda $, para $ i = 0, 1, 2, ... $ e a taxa de morte é $ \mu_i = \mu $, para $ i = 1, 2, 3, ... $. O espaço de estados é $ S=\{0, 1, 2, 3, ...\} $ e seu gerador infinitesimal G é:
+	\textbf{a)}  $ \{X_t; t\geq0\} $ é uma cadeia de Markov em tempo contínuo porque pode ser modelada como um processo de nascimento e morte, possuindo assim a propriedade Markoviana. Sua taxa de nascimento é $ \lambda_i = \lambda $, para $ i = 0, 1, 2, ... $ e a taxa de morte é $ \mu_i = \mu $, para $ i = 1, 2, 3, ... $. O espaço de estados é $ S=\{0, 1, 2, 3, ...\} $ e seu gerador infinitesimal G é:
 	
 	\begin{center}
 		$
 		G = \left[\begin{array}{ccccccc}
-		          -\lambda  & \lambda          & 0                & 0                & 0       & 0   & ... \\
-		          \mu       &  -(\lambda+\mu)  & \lambda          & 0                & 0       & 0   & ... \\
-		          0         & \mu              &  -(\lambda+\mu)  & \lambda          & 0       & 0   & ... \\
-		          0         & 0                & \mu              &  -(\lambda+\mu)  & \lambda & 0   & ... \\ 
-		          \vdots       & \vdots              & \vdots              &  \vdots             & \vdots     & \vdots & \vdots \\
+		        -\lambda  & \lambda          & 0                & 0                & 0       & 0      & ...    \\
+		        \mu       &  -(\lambda+\mu)  & \lambda          & 0                & 0       & 0      & ...    \\
+		        0         & \mu              &  -(\lambda+\mu)  & \lambda          & 0       & 0      & ...    \\
+		        0         & 0                & \mu              &  -(\lambda+\mu)  & \lambda & 0      & ...    \\ 
+		        \vdots    & \vdots           & \vdots           &  \vdots          & \vdots  & \vdots & \vdots \\
 		    \end{array}\right]
 		$
 	\end{center}
@@ -50,10 +50,125 @@
 		\vdots \\ \\
 	\end{cases} $
 	
-	Como $ \sum_{i \in S} \pi_i = 1 $, temos que $ \pi_0 \left(1 + \sum_{n=1}^{\infty} \left(\frac{\lambda}{\mu}\right)^n\right) = 1 $. A soma $ \sum_{n=1}^{\infty} \left(\frac{\lambda}{\mu}\right)^n $ só converge quando $ \lambda < \mu $. Quando isso acontece, a soma é finita, e existe a distribuição estacionária.
+	Como $ \sum_{i \in S} \pi_i = 1 $, temos que $ \pi_0 \left[1 + \sum_{n=1}^{\infty} \left(\frac{\lambda}{\mu}\right)^n\right] = 1 $. A soma $ \sum_{n=1}^{\infty} \left(\frac{\lambda}{\mu}\right)^n $ só converge quando $ \lambda < \mu $. Quando isso acontece, a soma é finita, e existe a distribuição estacionária.
 	
 	\section*{Exercício 7}
+	
+	\textbf{a)} Neste exercício, o espaço de estados é $ S = \{0, 1, 2, 3\} $. Vamos encontrar o gerador infinitesimal desse sistema. Note que a taxa para ir do estado $ 2 $ para o estado $ 1 $ é $ 2\mu $ porque ela vem de uma Exponencial que distribui o tempo mínimo entre o atendimento dos dois caixas.
+	
+	\begin{center}
+		$
+		G = \left[\begin{array}{cccc}
+			-\lambda  & \lambda          & 0                & 0       \\
+			\mu       &  -(\lambda+\mu)  & \lambda          & 0       \\
+			0         & 2\mu             & -(\lambda+2\mu)  & \lambda \\
+			0         & 0                & 2\mu             & -2\mu   \\ 
+		\end{array}\right]
+		$
+	\end{center}
+	
+	Substituindo os valores da matriz por $ \lambda = 3 $ clientes por hora e $ \mu = 2 $ clientes por hora, teremos:
+	
+	\begin{center}
+		$
+		G = \left[\begin{array}{cccc}
+			-3 & 3  & 0   & 0  \\
+			2  & -5 & 3   & 0  \\
+			0  & 4  & -7  & 3  \\
+			0  & 0  & 4   & -4 \\ 
+		\end{array}\right]
+		$
+	\end{center}
+	
+	Para encontrar a fração de clientes que entram no sistema, devemos somar a proporção de tempo que o sistema não fica no terceiro estado, que é quando ele está lotado. Usando as equações de Balanço Global:
+	
+	$ \begin{cases}
+	-3 \pi_0 + 2 \pi_1 = 0 \to \pi_1 = \frac{3}{2} \pi_0\\
+	3 \pi_0 -5 \pi_1 + 4 \pi_2 = 0 \to \pi_2 = \frac{9}{8} \pi_0\\
+	3 \pi_1 -7 \pi_2 + 4 \pi_3 = 0 \to \pi_3 = \frac{27}{32} \pi_0\\
+	\end{cases} $
+	
+	\begin{equation*}
+		\sum_{i \in S} \pi_i = 1 \to \pi_0 + \frac{3}{2} \pi_0 + \frac{9}{8} \pi_0 + \frac{27}{32} \pi_0 = 1 \to \pi_0 = \frac{32}{143}
+	\end{equation*}
+	
+	Logo, a proporção de clientes que consegue entrar no sistema é $ \pi_0 + \pi_1 + \pi_2 = \frac{32}{143} + \frac{9}{8} \cdot \frac{32}{143} + \frac{27}{32} \cdot \frac{32}{143} = \frac{116}{143}$. \\
+	
+	\textbf{b)} Com a nova taxa de atendimento $ \mu = 4 $ clientes por hora, o sistema consegue atender mais clientes do que chegam. Neste item não precisamos calcular o mínimo entre o atendimento dos dois caixas porque $ \lambda < \mu $. A matriz G fica: 
+	
+	\begin{center}
+		$
+		G = \left[\begin{array}{cccc}
+			-3 & 3  & 0   & 0  \\
+			4  & -7 & 3   & 0  \\
+			0  & 4  & -7  & 3  \\
+			0  & 0  & 4   & -4 \\ 
+		\end{array}\right]
+		$
+	\end{center}
+	
+	Analogamente ao item anterior:
+	
+		$ \begin{cases}
+		-3 \pi_0 + 4 \pi_1 = 0 \to \pi_1 = \frac{3}{4} \pi_0\\
+		3 \pi_0 -7 \pi_1 + 4 \pi_2 = 0 \to \pi_2 = \frac{9}{16} \pi_0\\
+		3 \pi_1 -7 \pi_2 + 4 \pi_3 = 0 \to \pi_3 = \frac{27}{64} \pi_0\\
+		\end{cases} $
+		
+		\begin{equation*}
+		\sum_{i \in S} \pi_i = 1 \to \pi_0 + \frac{3}{4} \pi_0 + \frac{9}{16} \pi_0 + \frac{27}{64} \pi_0 = 1 \to \pi_0 = \frac{64}{175}
+		\end{equation*}
+		
+		Logo, a proporção de clientes que consegue entrar no sistema é $ \pi_0 + \pi_1 + \pi_2 = \frac{64}{175} + \frac{3}{4} \cdot \frac{64}{175} + \frac{9}{16} \cdot \frac{64}{175} = \frac{148}{175}$.
+	
 	\section*{Exercício 8}
+	
+	\textbf{a)} Pelo enunciado, é possível particionar o processo de entrada no sistema, focando nos clientes que ficam. Os clientes entram no sistema com uma taxa $ \lambda \alpha_n $, que é a taxa de nascimento. A taxa de morte é $ \mu $. O espaço de estados é $ S=\{0, 1, 2, 3, ...\} $. O gerador infinitesimal será:
+	
+	\begin{center}
+		$
+		G = \left[\begin{array}{ccccccc}
+			-\lambda \alpha_0  & \lambda \alpha_0         & 0                        & 0                       & 0                & 0      & ...    \\
+			\mu                &  -(\lambda \alpha_1+\mu) & \lambda \alpha_1         & 0                       & 0                & 0      & ...    \\
+			0                  & \mu                      &  -(\lambda \alpha_2+\mu) & \lambda \alpha_2        & 0                & 0      & ...    \\
+			0                  & 0                        & \mu                      & -(\lambda \alpha_3+\mu) & \lambda \alpha_3 & 0      & ...    \\ 
+			\vdots             & \vdots                   & \vdots                   & \vdots                  & \vdots           & \vdots & \vdots \\
+		\end{array}\right]
+	$
+	\end{center}
+	
+	\textbf{b)} Montando as equações de Balanço Global: \\ 
+	
+	$ \begin{cases}
+	-\lambda \pi_0 + \mu \pi_1 = 0 \to \pi_1 = \frac{\lambda}{\mu} \alpha_0 \pi_0\\
+	\lambda \alpha_1\pi_0 -(\lambda\alpha_1+\mu) \pi_1 + \mu \pi_2 = 0 \to \pi_2 = \left(\frac{\lambda}{\mu}\right)^2 \alpha_0 \alpha_1 \pi_0\\
+	\lambda \alpha_2 \pi_1 -(\lambda\alpha_2+\mu) \pi_2 + \mu \pi_3 = 0 \to \pi_3 = \left(\frac{\lambda}{\mu}\right)^3 \alpha_0 \alpha_1 \alpha_2 \pi_0\\
+	\vdots \\
+	\lambda \alpha_{k-1} \pi_{k-2} -(\lambda\alpha_{k-1}+\mu) \pi_{k-1} + \mu \pi_k = 0 \to \pi_k = \left(\frac{\lambda}{\mu}\right)^k \left[\prod_{i=0}^{k-1} \alpha_{i}\right] \pi_0\\
+	\vdots \\ \\
+	\end{cases} $
+	
+	Como $ \sum_{i \in S} \pi_i = 1 $, temos que $ \pi_0 \left[1 + \sum_{n=1}^{\infty} \left(\frac{\lambda}{\mu}\right)^n \left[\prod_{i=0}^{n-1} \alpha_{i}\right] \pi_0\right] = 1 $. Já que $ \alpha_n \to 0 $, quando $ n \to \infty$, e supondo que $ \lambda < \mu $, a soma converge e a distribuição estacionária existe. \\
+	
+	\textbf{c)} Quando $ \alpha_n = \frac{1}{n+1} $, temos que $ \pi_n = \left(\frac{\lambda}{\mu}\right)^k \frac{1}{n!} \cdot \pi_0 $. Como $ \pi_0 = \frac{1}{\sum_{n=0}^{\infty}\left(\frac{\lambda}{\mu}\right)^n \frac{1}{n!}} = \frac{1}{e^{\frac{\lambda}{\mu}}} = e^{-\frac{\lambda}{\mu}}$, $ \pi_n = \left(\frac{\lambda}{\mu}\right)^n \frac{1}{n!} \cdot e^{-\frac{\lambda}{\mu}} = \frac{\left(\frac{\lambda}{\mu}\right)^n \cdot e^{-\frac{\lambda}{\mu}}}{n!}$, e, portanto, a distribuição estacionária é uma Poisson$ \left(\frac{\lambda}{\mu}\right) $.
+	
 	\section*{Exercício 10}
-	 
+	
+	\textbf{a)} Para modelar essa situação como um processo de nascimento e morte, temos que levar em conta dois casos: quando $ n < N $ e quando $ n \geq N $. No primeiro caso a imigração é permitida, então a taxa de nascimento é a taxa da população aumentar, e isso acontece quando há um alguém nasce ou imigra. No segundo caso, a imigração é restrita, logo, a taxa de nascimento não leva esse processo em conta. Para ficar mais claro, vamos analisar o gerador infinitesimal desse processo:
+	
+	\begin{center}
+		$
+		G = \left[\begin{array}{cccccccccc}
+		-\lambda & \lambda               & 0                      & 0                & \cdots  & 0      & 0              & 0               & 0       & ... \\
+		\mu      & -(\lambda+\theta+\mu) & \lambda+\theta         & 0                & \cdots  & 0      & 0              & 0               & 0       & ... \\
+		0        &\mu                    &  -(\lambda+\theta+\mu) & \lambda+\theta   & \cdots  & 0      & 0              & 0               & 0       & ... \\
+		\vdots   & \vdots                & \vdots                 & \vdots           & \ddots  & \vdots & \vdots         & \vdots          & \vdots  & ... \\
+		0        & 0                     & 0                      & 0                & \cdots  & \mu    & -(\lambda+\mu) & \lambda         & 0       & ... \\
+		0        & 0                     & 0                      & 0                & \cdots  & 0      &\mu             &  -(\lambda+\mu) & \lambda & ... \\
+		\vdots        & \vdots                      & \vdots                       & \vdots                & \vdots   & \vdots       &\vdots              &  \vdots  & \vdots  & ... \\
+		\end{array}\right]
+		$
+	\end{center}
+	
+	  
 \end{document}
