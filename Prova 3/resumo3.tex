@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage[table]{xcolor}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{Alegreya}
+\usepackage[brazil]{babel}
+\newlength{\tabcont}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\begin{document}
+	
+	\begin{multicols}{3}
+		Em todos os exercícios, definir o conjunto de estados S e desenhar a cadeia embutida para classificar os estados.
+		\noindent\makebox[\columnwidth]{\rule{\columnwidth}{0.4pt}}
+		
+		\textbf{Processo de Poisson}
+		
+		Seja um processo $ \{N((0, t]);t > 0\} $, temos que $ P(N(t) = k) = \frac{e^{-\lambda t} \cdot (\lambda t)^k}{k!} $. 
+		
+		A distribuição Poisson é calculada como o limite da Binomial quando $ n \to \infty $. 
+		
+		A notação utilizada é $ N(t) = N((0, t]) $ e $ N((s, t]) = N((0, t]) - N((0, s]) = N(t) - N(s) = N(t-s) $.
+		
+		\textit{Incrementos independentes}: $ P(N(s + t) - N(s) = k) = P(N(t) = k) $
+		
+		\textit{Incrementos estacionários}: $ P(N(t) - N(s) = n-k) = P(N(t-s) = n-k) $
+		
+		\textit{Instantes de ocorrência}: Chamado de $ S_i $ e denota o tempo da $ i $-ésima ocorrência. $ S_i \sim \Gamma(i, \lambda) $
+		
+		\textit{Tempos entre chegadas}: $ T_k = S_k - S_{k-1} $. $ T_k \sim \text{Exponencial}(\lambda) $. Os $ T_i $ são independentes entre si.
+		
+		\noindent\makebox[\columnwidth]{\rule{\columnwidth}{0.4pt}}
+		
+		\textbf{Partição do processo de Poisson} 
+		
+		Seja $ N(t) $ um processo de Poisson$ (\lambda) $ em que seja possível classificar cada evento entre uma classe $ A $ ou $ B $ com prob. $ p $ e $ 1-p $. 
+		
+		Define-se dois processos de Poisson $ A(t) $ e $ B(t) $ com parâmetros $ \lambda p $ e $ \lambda (1-p) $, independentes.
+		
+		\textit{Superposição dos processos}: Sejam dois processos $ N_1(t) $, com parâmetro $ \lambda_1 $ e $ N_2(t) $, com parâmetro $ \lambda_2 $. 
+		
+		É possível fazer $ N = N_1 + N_2 $ com parâmetro $ \lambda = \lambda_1 + \lambda_2 $. Lembrar do caso do mercado com duas portas.
+		
+		\noindent\makebox[\columnwidth]{\rule{\columnwidth}{0.4pt}}
+		
+		\textbf{Propriedade Markoviana} 
+		
+		$ P(X(t+s) = j | X(s) = i, X(u) = x_u, 0 <= u < s) = P(X(t+s) = j | X(s) = i) = p_{ij}(s, t+s) = p_{ij}(0, t) = p_{ij}(t) $
+		
+		\textit{Tempo de permanência no estado}: Deve satisfazer $ P(T_i > s+t | T_i > s) = P(T_i > t) $, que é a propriedade da falta de memória. 
+		
+		A propriedade Markoviana induz a tempos de permanência exponenciais.
+		
+		\noindent\makebox[\columnwidth]{\rule{\columnwidth}{0.4pt}}
+		
+		\textbf{Processo de nascimento e morte}
+		
+		Estando no estado $ k $, o processo só pode ir para $ k-1 $ e $ k+1 $. Fazendo $ N_k $: o tempo de ocorrência de um nascimento se há $ k $ pessoas e $ M_k $: o tempo de ocorrência de uma morte se há $ k $ pessoas, $ N_k \sim \text{Exponencial}(\lambda_k) $ e $ M_k \sim \text{Exponencial}(\mu_k) $.
+		
+		A transição ocorrerá após um tempo $ T_k $. Esse tempo é o tempo de ocorrer o primeiro evento, ou seja, o mínimo entre $ N_k $ e $ M_k $, logo: $ T_k  = \text{min}\{N_k, M_k\} \to T_k \sim \text{Exponencial}(\lambda_k + \mu_k) $.
+		
+		A prob. de ir para $ k-1 $ é $ P(N_k < M_k) = \frac{\lambda_k}{\lambda_k + \mu_k} $ e de ir para $ k+1 $ é $ P(N_k \geq M_k) = \frac{\mu_k}{\lambda_k + \mu_k} $ 
+		
+		O processo de Poisson$ (\lambda) $ é um processo Markoviano. Ele tem probabilidade = 1 de ir do estado $ k $ para o $ k+1 $. A taxa de morte é $ \mu_n = 0 $ e a de nascimento é $ \lambda_n = \lambda $,  $ \forall n \geq 0 $.
+		
+		\textit{Equações de Chapman-Kolmogorov}: $ P(s+t) = P(s)P(t) $ (representação matricial)
+		
+		\textit{Gerador infinitesimal:} $ P'_t  = G P_t $. Lembrar que $ P_t = e^{tG} $. Esse gerador nada mais é do que uma matriz com as taxas de transição instantâneas de um estado $ i $ para um estado $ j $. As linhas têm que somar 0.
+		
+		\textit{Cadeia embutida}: É o diagrama de transição da cadeia, como se ela fosse em tempo discreto, com $ q_{ii} = 0 $ e soma das linhas igual a 1.
+		
+		Não há periodiciade em tempo contínuo. O processo é irredutível sse a cadeia embutida é irredutível. Um estado é recorrente sse ele é recorrente para a cadeia embutida. Se o tempo médio de retorno ao estado i é finito, então o estado i é recorrente positivo.
+		
+		\noindent\makebox[\columnwidth]{\rule{\columnwidth}{0.4pt}}
+		
+		\textbf{Distribuição estacionária}
+		
+		$ \pi = \pi P(t) $, $ \forall t \geq 0 $ e $ \sum_{i \in S} \pi_i = 1 $.
+		
+		$ \pi = \pi P(t) $ sse $ \pi G = 0 $
+		
+		Se, em uma cadeia irredutível existe uma distribuição estacionária $ \pi $ ela é única e $\lim_{t\to\infty} p_{ij}(t) = \pi_j$, $ \forall i, j \in S $.
+		
+		Se ela não existe, então o $ p_{ij} \to 0 $ quando $ t \to \infty $, $ \forall i, j \in S $.
+		
+		\noindent\makebox[\columnwidth]{\rule{\columnwidth}{0.4pt}}
+		
+		\textbf{Reversibilidade}
+		
+		Seja $ {X(t), t \geq 0} $ uma cadeia de Markov em tempo contínuo, com gerador infinitesimal $ G $ com distribuição estacionária $ \pi $. 
+		
+		Se existe um vetor $ \alpha $ que satisfaz as equações de balanço detalhado: $ \alpha_i g_{ij} = \alpha_j g_{ji} $, e $ \sum_{k \in S} \alpha_k = 1 $, o processo é reversível e $ \alpha = \pi $ é a distribuição estacionária.
+		
+	\end{multicols}
+	
+	\textbf{Nome:}\\ \\
+	\textbf{Número USP:}
+
+	  
+\end{document}
